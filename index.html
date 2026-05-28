@@ -34,6 +34,7 @@
 
     <style>
       html {
+        overflow-x: hidden;     /* clip the slight skew overflow; no sideways scroll */
         overflow-y: scroll;
       }
 
@@ -211,7 +212,7 @@
 
       @media only screen and (max-width: 600px) {
         #main-list {
-          width: 75vw;
+          width: 90vw;
           margin: 0 auto 15vh;
           padding: 0;
         }
@@ -663,7 +664,7 @@
             img.style.objectFit = (portrait || narrow) ? 'contain' : 'cover';
             requestAnimationFrame(() => requestAnimationFrame(() => {
               img.style.opacity = '1';
-              captionEl.style.opacity = '1';
+              setTimeout(() => { captionEl.style.opacity = '1'; }, 200);  // caption lags the image in
             }));
           };
           img.src = cur.src;
@@ -688,6 +689,7 @@
           overlay.hidden = false;
           document.body.classList.add('image-mode-open');
           document.body.style.overflow = 'hidden';
+          document.documentElement.style.overflow = 'hidden';
           toggle.textContent = 'text';
           resetTimer();
         }
@@ -696,6 +698,7 @@
           overlay.hidden = true;
           document.body.classList.remove('image-mode-open');
           document.body.style.overflow = '';
+          document.documentElement.style.overflow = '';
           toggle.textContent = 'images';
         }
         function next() { if (images.length) { idx = (idx + 1) % images.length; render(); resetTimer(); } }

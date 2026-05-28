@@ -223,6 +223,11 @@
         #timeline .year-heading {
           margin-top: 1.5em;
         }
+
+        /* On phones, show the whole artwork (letterboxed) rather than cropping. */
+        #image-mode .image-container img {
+          object-fit: contain;
+        }
       }
 
       /* Mode toggle button */
@@ -703,8 +708,28 @@
         function prev() { if (images.length) { idx = (idx - 1 + images.length) % images.length; render(); resetTimer(); } }
 
         toggle.addEventListener('click', () => overlay.hidden ? open() : close());
-        // Click anywhere on the image to advance (but let caption links work).
-        overlay.addEventListener('click', e => { if (!e.target.closest('a')) next(); });
+
+        // Tap advances; swipe left/right navigates on touch devices.
+        let touchX = null, touchY = null, swiped = false;
+        overlay.addEventListener('touchstart', e => {
+          if (e.touches.length !== 1) return;
+          touchX = e.touches[0].clientX; touchY = e.touches[0].clientY; swiped = false;
+        }, { passive: true });
+        overlay.addEventListener('touchend', e => {
+          if (touchX === null) return;
+          const t = e.changedTouches[0];
+          const dx = t.clientX - touchX, dy = t.clientY - touchY;
+          touchX = touchY = null;
+          if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+            swiped = true;
+            dx < 0 ? next() : prev();
+          }
+        });
+        // Click anywhere to advance (skip a swipe's trailing click; let links work).
+        overlay.addEventListener('click', e => {
+          if (swiped) { swiped = false; return; }
+          if (!e.target.closest('a')) next();
+        });
         document.addEventListener('keydown', e => {
           if (overlay.hidden) return;
           if (e.key === 'Escape') close();

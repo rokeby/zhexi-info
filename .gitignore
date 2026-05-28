@@ -1,2 +1,6 @@
 .DS_Store
 indexhibit-bin
+.venv/
+.site_backups/
+__pycache__/
+*.pyc

@@ -1,32 +1,25 @@
 <!DOCTYPE html>
-<html>
-  <head> 
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">    
-    
-    <meta charset="utf-8">    
-    <meta property="og:title" content="Gary Zhexi Zhang" />
-    <meta property="og:description" content="Under Construction" />
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!--Basic meta info -->
+    <!-- Basic meta -->
     <meta name="keywords" content="Gary Zhexi Zhang, Artist and Writer, Catastrophe Time!, Art and Technology, Sinofuturism, Finance, Science and Technology Studies, Science Fiction.">
-    <meta name="author" content="Gary Zhexi Zhang" />
+    <meta name="author" content="Gary Zhexi Zhang">
     <meta name="description" content="Gary Zhexi Zhang, Artist and Writer, Catastrophe Time!, Art and Technology, Sinofuturism, Finance, Science and Technology Studies, Science Fiction.">
 
-    <!--OpenGraph meta -->
-    <meta property="og:description" content="Gary Zhexi Zhang, Artist and Writer, Catastrophe Time!, Art and Technology, Sinofuturism, Finance, Science and Technology Studies, Science Fiction."/>
-    <meta property="og:title" content="Gary Zhexi Zhang" />
-    <meta property="og:image" content="logo.png"/>
-    <meta property="og:url" content="" />
+    <!-- OpenGraph -->
+    <meta property="og:title" content="Gary Zhexi Zhang">
+    <meta property="og:description" content="Gary Zhexi Zhang, Artist and Writer, Catastrophe Time!, Art and Technology, Sinofuturism, Finance, Science and Technology Studies, Science Fiction.">
+    <meta property="og:image" content="logo.png">
+    <meta property="og:url" content="https://zhexi.info">
 
-    <!--meta for twitter -->
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:creator" content="@garyzhexizhang">
-    <meta name="twitter:title" content="Gary Zhexi Zhang">
     <meta name="twitter:site" content="@garyzhexizhang">
+    <meta name="twitter:title" content="Gary Zhexi Zhang">
     <meta name="twitter:description" content="Personal website of artist and writer Gary Zhexi Zhang">
 
     <title>Gary Zhexi Zhang</title>
@@ -36,15 +29,18 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-KX16SS8PJ0');
     </script>
 
     <style>
+      html {
+        overflow-y: scroll;
+      }
+
       body {
-        width: 100vw;
+        width: 100%;
         padding: 0;
-        margin: 0 0 0 0; 
+        margin: 0;
         background-color: #ffffff;
         color: black;
       }
@@ -52,18 +48,19 @@
       body *::selection {
         background: #ffece5;
         color: red;
-
       }
 
       body *::-moz-selection {
         background: #ffece5;
+        color: red;
       }
-      
+
       h2 {
         font-weight: bold;
         font-size: 1em;
         text-transform: uppercase;
         font-family: 'Garamond', serif;
+        margin-top: 2em;
       }
 
       ul {
@@ -72,7 +69,7 @@
 
       li {
         text-transform: lowercase;
-        padding: 0.2em 0 0.2em 0;
+        padding: 0.2em 0;
       }
 
       a {
@@ -83,31 +80,17 @@
       }
 
       a::selection {
-/*        background: #ffece5;*/
         color: black;
       }
 
-      m {
-        color: red;
-        font-family: 'Garamond', serif;
-        -webkit-text-stroke-width: 0.5px;
-        -webkit-text-stroke-color: black;
-      }
-
-      #left-title {
-        width: 30%;
-        position: fixed;
-        display: block;
-      }
-
       #main-list {
-        width: 40%;
-        transform: rotate(-0.7deg); /* Equal to rotateZ(45deg) */
+        width: 35%;
+        transform: rotate(-0.7deg);
+        transform-origin: center top;
         font-family: 'Garamond', serif;
-        margin-left: 30%;
-        margin-right: 30%;
-        margin-bottom: 15vh; 
-
+        margin-left: 32.5%;
+        margin-right: 32.5%;
+        margin-bottom: 15vh;
       }
 
       #bio {
@@ -121,221 +104,615 @@
 
       #footer {
         text-align: right;
-        padding: 0 1em 0 0;
+        padding: 0 1em;
+        font-family: 'Garamond', serif;
+        text-transform: lowercase;
       }
 
-      .hide {
-        display:  none;
+      /* Filter rows */
+      #type-filters,
+      #theme-filters {
+        margin: 0.5em 0;
+        font-family: 'Garamond', serif;
+        text-transform: lowercase;
+        line-height: 2;
+      }
+
+      #theme-filters {
+        margin-bottom: 1.5em;
+        padding-left: 3em;
+      }
+
+      #theme-filters:empty,
+      #theme-filters[hidden] {
+        display: none;
+      }
+
+      #theme-filters button[hidden] {
+        display: none;
+      }
+
+      #type-filters button,
+      #theme-filters button {
+        background: none;
+        border: none;
+        font: inherit;
+        font-size: 1em;
+        color: yellow;
+        -webkit-text-stroke-width: 0.5px;
+        -webkit-text-stroke-color: black;
+        cursor: pointer;
+        padding: 0;
+        margin-right: 0.6em;
+        font-family: 'Garamond', serif;
+      }
+
+      #type-filters button:hover,
+      #type-filters button.active,
+      #theme-filters button:hover,
+      #theme-filters button.active {
+        color: red;
+      }
+
+      #theme-filters .theme-label {
+        font-style: italic;
+        opacity: 0.55;
+        margin-right: 0.4em;
+        text-transform: lowercase;
+      }
+
+      /* Timeline */
+      #timeline {
+        list-style: none;
+        padding-left: 0;
+        transition: opacity 0.2s ease;
+      }
+
+      #timeline li {
+        padding: 0.35em 0 0.35em 2em;
+        text-transform: lowercase;
+        transition: color 0.25s ease;
+      }
+
+      #timeline .date:not(:empty)::after {
+        content: ". ";
+      }
+
+      #timeline .type {
+        font-style: italic;
+        color: #888;
+      }
+
+      #timeline .type::after {
+        content: ". ";
+        font-style: normal;
+        color: #000;
+      }
+
+      #timeline .year-heading {
+        list-style: none;
+        font-family: 'Garamond', serif;
+        font-size: 1em;
+        font-weight: bold;
+        text-transform: uppercase;
+        padding: 0;
+        margin-top: 2em;
+        break-after: avoid;
+        break-inside: avoid;
+      }
+
+      #timeline .year-heading.top {
+        margin-top: 0;
+      }
+
+      #timeline li.dim {
+        display: none;
       }
 
       @media only screen and (max-width: 600px) {
-
-        #left-title {
-          display: none;
-        }
-
         #main-list {
-          width: 80vw;
-          left: 5vw;
-          margin: 0 0 15vh 0vw;
-          padding: 0vw 5vw 0vw 5vw;
+          width: 75vw;
+          margin: 0 auto 15vh;
+          padding: 0;
         }
 
+        #timeline li {
+          padding: 0.6em 0;
+        }
+
+        #timeline .year-heading {
+          margin-top: 1.5em;
+        }
       }
+
+      /* Mode toggle button */
+      #mode-toggle {
+        position: fixed;
+        top: 1em;
+        right: 1em;
+        z-index: 60;
+        background: white;
+        border: 1px solid black;
+        font-family: 'Garamond', serif;
+        font-size: 1em;
+        text-transform: lowercase;
+        padding: 0.3em 0.9em;
+        cursor: pointer;
+        transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+      }
+
+      #mode-toggle:hover {
+        background: yellow;
+      }
+
+      body.image-mode-open #mode-toggle {
+        background: black;
+        color: white;
+        border-color: white;
+      }
+
+      body.image-mode-open #mode-toggle:hover {
+        background: #222;
+      }
+
+      /* Image mode overlay */
+      #image-mode {
+        position: fixed;
+        inset: 0;
+        background: black;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        z-index: 50;
+        opacity: 1;
+        transition: opacity 0.2s ease;
+      }
+
+      #image-mode[hidden] {
+        display: flex;          /* keep in layout so opacity can transition */
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      #image-mode .image-container {
+        flex: 1;
+        min-height: 0;
+      }
+
+      #image-mode .image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: opacity 0.2s ease;
+      }
+
+      #image-mode .placeholder {
+        font-family: 'Garamond', serif;
+        font-size: 1.4em;
+        font-style: italic;
+        opacity: 0.55;
+        text-align: center;
+        max-width: 28em;
+        line-height: 1.5;
+      }
+
+      /* Caption styled like the build "console": monospace, dark, green. */
+      #image-mode .caption {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        max-width: 80vw;
+        text-align: right;
+        padding: 0.4em 0.7em;
+        background: #111;
+        color: #cfc;
+        border-radius: 3px 0 0 0;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 0.8em;
+        line-height: 1.4;
+        transition: opacity 0.2s ease;
+      }
+
+      #image-mode .caption .date {
+        margin-right: 0.6em;
+      }
+
+      #image-mode .caption .type {
+        margin-right: 0.6em;
+      }
+
+      #image-mode .caption .desc {
+        text-transform: none;
+      }
+
+      #image-mode .caption a {
+        color: #cfc;
+        -webkit-text-stroke: 0;
+      }
+
+      #image-mode .image-container { cursor: pointer; }
 
     </style>
   </head>
 
   <body>
 
-    <div id="left-title">
-      <h3></h3>
-    </div>
+    <button id="mode-toggle" aria-label="toggle image mode">images</button>
 
     <div id="main-list">
 
-      <h2 id="header"><em>Under Construction</em>
-      <br><br>
-      ***
-      <br><br>
-      </h2>
+      <!-- HEADING_START -->
+<h2 id="header"><em>Under Construction</em><br><br>***<br><br></h2>
+        <!-- HEADING_END -->
 
-      <h2>News/Upcoming (last updated 28 jan 2026)</h2>
-      <ul>        
-        <li>I am working on a new book, with Berggruen Press.</li>
-        <li>Teaching: I have joined the Royal College of Art as Tutor (Research) in Contemporary Art Practice</li>
-        <li>Part one, 2026: I am leading a working group for Organismo @ TBA21 Academy, on climate resilience and intervention in the Western Mediterranean, in collaboration with BC3 and EEAS.</li>
-        <li>I am an Advisor for the 2026 Hyundai Artlab Writing Fellowship, open call soon!</li>
+      <!-- NEWS_START -->
+<h2>News</h2>
+      <ul id="news">
+        <li>Working on a new book with Berggruen Press.</li>
+        <li>Joined the <a href="https://www.rca.ac.uk/">Royal College of Art</a> as Tutor (Research) in Contemporary Art Practice.</li>
+        <li>Leading a working group for Organismo @ <a href="https://www.tba21.org/">TBA21 Academy</a> on climate resilience and intervention in the Western Mediterranean, with BC3 and EEAS (part one, 2026).</li>
+        <li>Advisor for the 2026 Hyundai Artlab Writing Fellowship</li>
+      </ul>
+        <!-- NEWS_END -->
+
+      <nav id="type-filters">
+        <!-- TYPE_FILTERS_START -->
+        <button data-type-filter="all" class="active">all</button>
+        <button data-type-filter="exhibition">exhibition</button>
+        <button data-type-filter="writing">writing</button>
+        <button data-type-filter="research">research</button>
+        <button data-type-filter="talk">talk</button>
+        <button data-type-filter="teaching">teaching</button>
+        <!-- TYPE_FILTERS_END -->
+      </nav>
+      <nav id="theme-filters">
+        <!-- THEME_FILTERS_START -->
+        <button data-theme-filter="all" class="active">~</button>
+        <button data-theme-filter="multipolarity">multipolarity</button>
+        <button data-theme-filter="npc">non-player culture</button>
+        <button data-theme-filter="economy">economy</button>
+        <button data-theme-filter="ecology">ecology</button>
+        <button data-theme-filter="belief">belief</button>
+        <!-- THEME_FILTERS_END -->
+      </nav>
+
+      <ul id="timeline">
+        <!-- TIMELINE_START -->
+        <li class="year-heading" data-year="2026">2026</li>
+        <li data-type="teaching" data-id="102"><span class="date">nov</span><span class="type">teaching</span>started as tutor (research) in MA Contemporary Art Practice at RCA</li>
+        <li data-type="exhibition" data-themes="npc belief" data-id="100"><span class="date">oct</span><span class="type">exhibition</span>PUSS, a new performance work with Klara Kofen and Cameron Graham, for <a href="https://www.somersethouse.org.uk/whats-on/3-evenings-saturday">Somerset House 3 Evenings during Frieze week</a></li>
+        <li data-type="exhibition" data-themes="npc" data-id="101"><span class="date">oct</span><span class="type">exhibition</span>new simulation work for The Mall at Powerhouse Parramatta x OMA AMO</li>
+        <li data-type="research" data-id="108"><span class="date">jun</span><span class="type">research</span>I'm an advisor for Serpentine's Future Art Ecosystems <a href="https://www.serpentinegalleries.org/whats-on/future-art-ecosystems-rd-fellowship-art-x-convergence/">Art x Convergence fellowship</a></li>
+        <li data-type="writing" data-id="109"><span class="date">may</span><span class="type">writing</span>Interview with net.art legends <a href="https://ocula.com/magazine/conversations/eva-and-franco-mattes-venice-exhibition-rage-bait/">Eva & Franco Mattes</a></li>
+        <li data-type="research" data-themes="ecology" data-id="106"><span class="date">jan</span><span class="type">research</span>Ongoing: Leading a working group on climate resilience in coastal Valencia with  <a href="https://www.bc3research.org/en/">Basque Centre for Climate Change</a> and <a href="https://www.eeas.europa.eu/_en">European External Action Service</a>, <a href="https://tba21.org/organismoyearone">Organismo at TBA21-Academy</a></li>
+        <li data-type="research" data-id="107"><span class="date">jan</span><span class="type">research</span>I'm an mentor this year for Hyundai's ArtLab writing fellowship, working with fellow Travis Jeppesen.</li>
+        <li class="year-heading" data-year="2025">2025</li>
+        <li data-type="writing" data-themes="npc" data-id="9"><span class="date">nov</span><span class="type">writing</span>"The Shoggoth and the Skeuomorph" in <a href="https://www.phaidon.com/products/new-humans-memories-of-the-future">New Museum: New Humans</a> (Phaidon).</li>
+        <li data-type="talk" data-themes="npc economy" data-id="5"><span class="date">oct</span><span class="type">talk</span>lectures at Goldsmiths MFA ("Planetarity") and <a href="https://www.youtube.com/watch?v=e1ojxYl5gK4">Asymmetry ("Psychedelic Reason")</a>.</li>
+        <li data-type="research" data-themes="multipolarity" data-id="8"><span class="date">oct</span><span class="type">research</span>100pp report on art and technology in mainland China for the British Council. Thanks to Eva Jaeger and Milia Xin Bi for peer review.</li>
+        <li data-type="research talk" data-themes="economy ecology" data-id="3"><span class="date">sept</span><span class="type">research</span>co-curated <em>The Weather In-Between: Monsoons, Markets and Other Derivative Atmospheres</em> at Para Site, Hong Kong, with Billy Tang and Stefan Luk; also keynote lecture.</li>
+        <li data-type="talk" data-themes="multipolarity" data-id="4"><span class="date">sept</span><span class="type">talk</span>"Multipolar Technoculture" at Het Nieuwe Instituut (online).</li>
+        <li data-type="teaching" data-id="104"><span class="date">sept</span><span class="type">teaching</span>Associate Tutor in BA Fine Art, Chelsea College of Art</li>
+        <li data-type="teaching" data-id="105"><span class="date">sept</span><span class="type">teaching</span>Associate lecturer in MA Fine Art, Goldsmith's</li>
+        <li data-type="talk" data-themes="multipolarity" data-id="6"><span class="date">aug</span><span class="type">talk</span><a href="https://www.vam.ac.uk/event/kepOWgnor0/friday-late-august-2025">Friday Lates panel</a> at V&amp;A x Eastern Margins with Clara and Lorenzo.</li>
+        <li data-type="research" data-themes="multipolarity" data-id="10"><span class="date">jul</span><span class="type">research</span>joint contribution with <a href="https://irislong.xyz/">Iris Long</a> in the British Council position paper <a href="https://www.britishcouncil.org/research-insight/why-technology-needs-artists">Why Technology Needs Artists: 40 International Perspectives</a>.</li>
+        <li data-type="writing" data-themes="multipolarity" data-id="15"><span class="date">jul</span><span class="type">writing</span>zine and performance, <a href="https://www.instagram.com/p/DMr9UXLo-BR/?img_index=1">On Signification</a>, made at La Becque.</li>
+        <li data-type="research" data-id="16"><span class="date">apr-jul</span><span class="type">research</span>residency at La Becque &lt;3.</li>
+        <li data-type="teaching" data-id="103"><span class="date">jun</span><span class="type">teaching</span>Associate Lecturer in MA Fine Art, Chelsea College of Art</li>
+        <li data-type="writing" data-themes="economy ecology" data-id="1"><span class="date">apr</span><span class="type">writing</span>chapter "Between the Planet and the Market", on the climate financial complex, in <a href="https://www.bloomsbury.com/uk/incomputable-earth-9781350264977/">Incomputable Earth: Technology and the Anthropocene Hypothesis</a> (Bloomsbury).</li>
+        <li data-type="exhibition" data-id="2"><span class="date">apr</span><span class="type">exhibition</span>group show: <em>Metamers</em> at <a href="https://art.busan.go.kr/tblTsite07Display/viewNowClientEng.nm?id=20250417212653175">Moving on Asia</a>, Domoheon Busan.</li>
+        <li data-type="talk" data-themes="economy" data-id="17"><span class="date">apr</span><span class="type">talk</span><a href="https://www.youtube.com/watch?v=7ififKViRwU">Global Art Forum talk</a> with Halle Frost and a very good crew.</li>
+        <li data-type="exhibition" data-themes="economy" data-id="19"><span class="date">apr</span><span class="type">exhibition</span>exhibition with Madde Andersson at Zentrum für Kreativ Wirtschaft, Kassel.</li>
+        <li data-type="talk" data-themes="economy" data-id="20"><span class="date">apr</span><span class="type">talk</span><a href="https://www.youtube.com/watch?v=LcHM2Rj4JXQ">MoMA R&amp;D Salon on scams</a> (fav topic).</li>
+        <li data-type="talk" data-id="21"><span class="date">mar</span><span class="type">talk</span>"AIs, Egregores and the UX of personhood" at NYU Shanghai IMA.</li>
+        <li data-type="talk" data-id="22"><span class="date">mar</span><span class="type">talk</span>"Technology and Belief" artist talk at China Academy of Art.</li>
+        <li data-type="writing" data-themes="multipolarity" data-id="14"><span class="date">feb</span><span class="type">writing</span>essay on multipolarity in the new <a href="https://www.serpentinegalleries.org/about/press/serpentine-launches-reader/">Serpentine Reader</a>.</li>
+        <li data-type="writing" data-themes="multipolarity" data-id="13"><span class="date">jan</span><span class="type">writing</span><a href="https://www.combinationsmag.com/the-critical-legacy-of-chinese-cybernetics/">The Critical Legacy of Chinese Cybernetics</a> in Combinations Mag.</li>
+        <li data-type="talk" data-id="23"><span class="date">jan</span><span class="type">talk</span><a href="https://www.rsa.ox.ac.uk/news/detail/contemporary-art-lectures-at-the-ruskin">Contemporary Art Lecture Series</a> at Ruskin College of Art, Oxford.</li>
+        <li class="year-heading" data-year="2024">2024</li>
+        <li data-type="exhibition" data-id="24"><span class="date">nov</span><span class="type">exhibition</span>biennial: <em>The Tourist</em> at the <a href="https://www.e-flux.com/announcements/636178/asian-art-biennial-2024how-to-hold-your-breath/">9th Asian Art Biennial</a>, Taichung.</li>
+        <li data-type="exhibition" data-themes="economy" data-id="27"><span class="date">oct</span><span class="type">exhibition</span>Dead Cat Bounce on tour with Waste Paper Opera to Eastside Projects, <a href="https://www.nottinghamcontemporary.org/whats-on/performance-dead-cat-bounce-by-waste-paper-opera/">Nottingham Contemporary</a> and Arts Catalyst.</li>
+        <li data-type="writing" data-id="45"><span class="date">sept</span><span class="type">writing</span><a href="https://www.noemamag.com/chinas-hinterland-becomes-a-critical-datascape/">"China's Hinterland Becomes a Critical Datascape"</a> &mdash; big data infrastructure, castles and sovereignty in Guizhou &mdash; for Noema / e-flux Architecture.</li>
+        <li data-type="writing" data-id="29"><span class="date">aug</span><span class="type">writing</span><a href="https://www.frieze.com/article/zanzibar-ali-sultan-aissa-243">"Searching for the Revolutionary Ali Sultan Issa"</a> &mdash; on the making of <a href="https://thetourist.thegoldfarbgallery.ca/">The Tourist</a> &mdash; in Frieze #243.</li>
+        <li data-type="teaching" data-id="37"><span class="date">aug</span><span class="type">teaching</span>PAF University with Flora Weil</li>
+        <li data-type="exhibition" data-id="25"><span class="date">jun</span><span class="type">exhibition</span>group show: 小节线内的抽屉 at Power Station of Art, Shanghai.</li>
+        <li data-type="research" data-id="36"><span class="date">jun</span><span class="type">research</span>Senior Researcher @ Antikythera Cognitive Infrastructures Studio.</li>
+        <li data-type="writing" data-themes="economy" data-id="28"><span class="date">mar</span><span class="type">writing</span>co-authored <a href="https://reader.futureartecosystems.org/briefing/fae4/">Future Art Ecosystems 4: Art x Public AI</a> with Serpentine R&amp;D.</li>
+        <li data-type="exhibition" data-id="26"><span class="date">feb</span><span class="type">exhibition</span>solo: <a href="https://epfl-pavilions.ch/exhibitions/metamers">METAMERS</a> at EPFL Pavilions, Lausanne.</li>
+        <li data-type="talk" data-themes="economy" data-id="38"><span class="date">feb</span><span class="type">talk</span><a href="https://www.ica.art/learning/conditions-sessions-gary-zhexi-zhang">artist talk at ICA London</a> with the Conditions programme.</li>
+        <li class="year-heading" data-year="2023">2023</li>
+        <li data-type="research" data-id="41"><span class="date">oct</span><span class="type">research</span><a href="https://www.instagram.com/forecast.space/p/C3TNESsuYCl/?next=%2Fjoseitopercu%2Ftagged%2F&amp;hl=cs&amp;img_index=2">Ocean Briefings</a>, public artwork at Sea Art Festival, Busan.</li>
+        <li data-type="exhibition" data-id="74"><span class="date">sept</span><span class="type">exhibition</span>co-curated <a href="https://eastsideprojects.org/projects/alienvillage/">AlienVILLAGE</a> with Sahjan Kooner at Eastside Projects, with collaborators Sophie Chapman and Manjit Kooner.</li>
+        <li data-type="writing" data-themes="economy" data-id="46"><span class="date">aug</span><span class="type">writing</span><a href="https://www.frieze.com/article/gary-zhexi-zhang-catastrophe-time-235">"Unravelling the World in the Polycrisis Era"</a> for Frieze #235.</li>
+        <li data-type="exhibition" data-id="40"><span class="date"></span><span class="type">exhibition</span><a href="https://thetourist.thegoldfarbgallery.ca/">The Tourist</a>, film commission for the Art Gallery of York University, Toronto.</li>
+        <li data-type="writing" data-id="42"><span class="date">may</span><span class="type">writing</span><a href="https://mitpress.mit.edu/9781913689674/catastrophe-time/">Catastrophe Time!</a>, an edited book of fictions, essays and interviews about finance and time (Strange Attractor Press).</li>
+        <li data-type="talk" data-id="49"><span class="date">may</span><span class="type">talk</span>Art &amp; Economy @ documenta Institute.</li>
+        <li data-type="exhibition" data-id="48"><span class="date">apr</span><span class="type">exhibition</span>group exhibition: <em>Katabasis, or Cartographer in the Underworld</em> @ totalab Shanghai, curated by Julian Junyuan Feng.</li>
+        <li data-type="talk" data-id="52"><span class="date">apr</span><span class="type">talk</span>Earth Day conversation with Sougwen Chung and Asad Raza for Gaia Art Foundation and Ignota Press.</li>
+        <li data-type="teaching" data-id="83"><span class="date">apr</span><span class="type">teaching</span>Cybernetics and China with Mi You, The New Centre &mdash; session one <a href="https://www.youtube.com/watch?v=eJFulsNSnO4">here</a>.</li>
+        <li data-type="talk" data-id="53"><span class="date">feb</span><span class="type">talk</span>Sync or Swim @ Goldsmiths MFA Fine Art &amp; Curating.</li>
+        <li data-type="writing" data-id="66"><span class="date">feb</span><span class="type">writing</span>"The Internet of Egregores" for Platforms, book by Singapore Biennial, on the invitation of Aarti Sunder.</li>
+        <li class="year-heading" data-year="2022">2022</li>
+        <li data-type="writing" data-id="63"><span class="date">nov</span><span class="type">writing</span>co-authored <a href="https://d37zoqglehb9o7.cloudfront.net/uploads/2022/11/FAE3_ArtxDecentralised-Tech.pdf">Future Art Ecosystems 3: Art x Decentralised Tech</a> with Victoria Ivanova (Serpentine).</li>
+        <li data-type="talk" data-id="80"><span class="date">nov</span><span class="type">talk</span>symposium "Cohesion was meant to hold. But reality started to slide." &mdash; a Diann Bauer appreciation.</li>
+        <li data-type="exhibition" data-id="72"><span class="date">oct</span><span class="type">exhibition</span>group exhibition: <a href="https://ucca.org.cn/en/exhibition/liquid-ground/">Liquid Ground</a> @ UCCA Dune.</li>
+        <li data-type="exhibition" data-id="59"><span class="date">jul</span><span class="type">exhibition</span>Dead Cat Bounce premiere with <a href="https://www.wastepaperopera.net/">Waste Paper Opera</a> at <a href="https://www.somersethouse.org.uk/whats-on/dead-cat-bounce">Somerset House</a>.</li>
+        <li data-type="teaching" data-id="55"><span class="date"></span><span class="type">teaching</span>lecturer @ Goldsmiths MFA, Fine Art Critical Studies.</li>
+        <li data-type="teaching" data-themes="belief" data-id="84"><span class="date"></span><span class="type">teaching</span>Associate Lecturer for "Scam Magic" workshops at Goldsmiths MFA.</li>
+        <li data-type="writing" data-id="94"><span class="date">apr</span><span class="type">writing</span><a href="https://artreview.com/anicka-yi-i-am-very-squeamish-with-culture-interview-tate-turbine/">"Anicka Yi: 'I'm Very, Very Squeamish With Culture'"</a> &mdash; interview in ArtReview.</li>
+        <li data-type="talk" data-id="82"><span class="date">feb</span><span class="type">talk</span><a href="https://audioboom.com/posts/8036531-the-process-what-is-financial-astrology">"What is Financial Astrology?"</a> podcast with Alannah Chance @ Somerset House Studios.</li>
+        <li class="year-heading" data-year="2021">2021</li>
+        <li data-type="exhibition" data-id="91"><span class="date">dec</span><span class="type">exhibition</span>group exhibition: <a href="https://www.powerstationofart.com/whats-on/exhibitions/ecp-2021-exhibition">Death Ray on Coral Island</a> @ Power Station of Art.</li>
+        <li data-type="exhibition" data-id="90"><span class="date">nov</span><span class="type">exhibition</span>group exhibition: <a href="https://www.alien.com.tw/u/en/pages/Rehearsing_the_Future">Rehearsing the Future</a> @ Alien Art Center.</li>
+        <li data-type="writing" data-id="70"><span class="date">oct</span><span class="type">writing</span><a href="https://weirdeconomies.com/glossary/p/ponzi-scheme">"Ponzi Scheme"</a>, Weird Economies glossary.</li>
+        <li data-type="exhibition" data-id="88"><span class="date">oct</span><span class="type">exhibition</span>group exhibition: <a href="https://www.ioam.org.cn/en/upcoming-exhibition/upcoming-exhibition%E4%B8%A8the-principle-of-hope/">The Principle of Hope</a> @ Inside Out Art Museum.</li>
+        <li data-type="exhibition" data-id="89"><span class="date">aug</span><span class="type">exhibition</span>group exhibition: <a href="https://www.para-site.art/exhibitions/liquid-ground/">Liquid Ground</a> @ Para Site.</li>
+        <li data-type="exhibition" data-id="86"><span class="date">jun</span><span class="type">exhibition</span>solo exhibition: <em><a href="files/Cycle_25_GZZ_2021_xsm.pdf">Cycle 25</a></em> @ Arts Catalyst &amp; Bloc Projects.</li>
+        <li data-type="exhibition" data-themes="economy ecology" data-id="87"><span class="date"></span><span class="type">exhibition</span><em><a href="https://fud.zhexi.info">The First 10,000 Years</a></em>, digital artwork with Agnes Cameron @ Arts Catalyst.</li>
+        <li data-type="writing" data-id="96"><span class="date"></span><span class="type">writing</span>"The Internet of Egregores" &mdash; essay on digital identity and cultic thoughtforms (<a href="files/egregores.pdf">PDF</a>).</li>
+        <li data-type="writing" data-id="68"><span class="date">apr</span><span class="type">writing</span>"Sinofuturism and its Uses", VERGE Journal of Global Asias.</li>
+        <li data-type="writing" data-id="69"><span class="date">mar</span><span class="type">writing</span>"Propositions", Harun Farocki Institute &amp; Journal for Visual Culture.</li>
+        <li class="year-heading" data-year="2020">2020</li>
+        <li data-type="writing" data-id="97"><span class="date">feb</span><span class="type">writing</span><a href="https://artreview.com/back-to-the-drawing-board/">"Avant-garde as a Service"</a>, ArtReview &mdash; on consultants, art and business.</li>
+        <li class="year-heading" data-year="2019">2019</li>
+        <li data-type="writing" data-id="95"><span class="date">jul</span><span class="type">writing</span><a href="https://jods.mitpress.mit.edu/pub/zhang/release/3">"Systems Seduction: The Aesthetics of Decentralization"</a> &mdash; brief history of ecology and cybernetics in the MIT Journal of Design and Science.</li>
+        <!-- TIMELINE_END -->
       </ul>
 
-      <h2>Exhibitions</h2>
-      <ul>
-        <li>Group Show: Metamers showing at <a href="https://art.busan.go.kr/tblTsite07Display/viewNowClientEng.nm?id=20250417212653175">Moving on Asia</a>, Domoheon Busan.</li>
-        <li>Biennial: "The Tourist" at the <a href="https://www.e-flux.com/announcements/636178/asian-art-biennial-2024how-to-hold-your-breath/">9th Asian Art Biennial</a></li>
-        <li>Group Show: 小节线内的抽屉，Power Station of Art (2024)</li>
-        <li>Solo: <a href="https://epfl-pavilions.ch/exhibitions/metamers">METAMERS</a>, EPFL Pavilions (2024)</li>
-        <li>Film: <a href="https://thetourist.thegoldfarbgallery.ca/">The Tourist</a>, Art Gallery of York University</li>
-        <li>Public Artwork: <a href="https://www.instagram.com/forecast.space/p/C3TNESsuYCl/?next=%2Fjoseitopercu%2Ftagged%2F&hl=cs&img_index=2">Ocean Briefings</a>, Sea Art Festival, Busan (2023)</li>
-        <li>Opera: <a href="https://www.nottinghamcontemporary.org/whats-on/performance-dead-cat-bounce-by-waste-paper-opera/">Dead Cat Bounce</a>, with Waste Paper Opera (2022), touring in 2024 to Eastside Projects, Nottingham Contemporary, and Arts Catalyst.</li>
-        <li>Exhibition: <a href="files/Cycle_25_GZZ_2021_xsm.pdf">Cycle 25</a>, Arts Catalyst/Bloc Projects (2021).
-      </ul>
-
-      <h2>2025 Writing</h2>
-      <ul>
-        <li>Short upcoming text for <a href="https://www.roseeaston.com/artists/louis-morlae">Louis Morlae/Rose Easton</a> at Artissima</li>
-        <li>Sept/oct: 100pp report on Art and Technology in Mainland China for British Council out quite soon! Thx Eva Jaeger and Milia Xin Bi for peer review.</li> 
-        <li>Upcoming in <a href="https://www.phaidon.com/products/new-humans-memories-of-the-future">New Museum: New Humans (Phaidon) book, "The Shoggoth and the Skeuomorph"</a>.</li>
-        <li>Zine & performance, <a href="https://www.instagram.com/p/DMr9UXLo-BR/?img_index=1">On Signification"</a>, La Becque.</li> 
-        <li>"Payne Zhu's Deep Sea Erotica" <a href="https://artreview.com/payne-zhu-sounding-the-deep-water-aranya-art-centre-beidaihe-review-gary-zhexi-zhang/">in ArtReview</a></li>       
-        <li>Review of Bahar, Klara and Cameron's <a href="https://artreview.com/when-protest-is-another-kind-of-performance-bahar-noorizadeh-klara-kofen-admiror-live-action-role-play-gary-zhexi-zhang-opinion/">Admiror in ArtReview</a></li>
-        <li>Joint contribution with <a href="https://irislong.xyz/">Iris Long</a> in British Council Art and Technology position paper, <a href="https://www.britishcouncil.org/research-insight/why-technology-needs-artists">Why Technology Needs Artists: 40 International Perspectives"</a>.</li>
-        <li><a href="https://www.combinationsmag.com/the-critical-legacy-of-chinese-cybernetics/">The Critical Legacy of Chinese Cybernetics</a> in Combinations Mag</li>
-        <li>An essay about Multipolarity in the new <a href="https://www.serpentinegalleries.org/about/press/serpentine-launches-reader/">Serpentine Reader</a></li>
-      </ul>
-
-      <h2>Selected Writing</h2>
-      <ul>
-        <li>Book about Fiction, Finance and Time: <a href="https://mitpress.mit.edu/9781913689674/catastrophe-time/">Catastrophe Time!</a> (Strange Attractor Press, 2023).</li>
-        <li>Big data infrastructure, castles and sovereignty in Guizhou, China for <a href="https://www.noemamag.com/chinas-hinterland-becomes-a-critical-datascape/">Noema/e-flux Architecture.</a></li>
-        <li>Short multipolar poetics: <a href="https://www.artbasel.com/stories/taipei-biennial-taiwan-globalization">"Breaking up with globalization at the Taipei Biennial"</a></li>
-        <li>Essay on Digital Identity and Cultic Thoughtforms: <a href="files/egregores.pdf">The Internet of Egregores</a></li>
-        <li>Chapter on the Climate Financial Complex: "Between the Planet and the Market" in <a href="https://www.bloomsbury.com/uk/incomputable-earth-9781350264977/">Incomputable Earth: Technology and the Anthropocene Hypothesis</a> (Bloomsbury, 2025)</li>
-        <li>Brief history of Ecology and Cybernetics: <a href="https://jods.mitpress.mit.edu/pub/zhang/release/3">Systems Seduction: The Aesthetics of Decentralization</a>, MIT Journal of Design and Science.</li>
-        <li>On consultants, art and business: <a href="https://artreview.com/back-to-the-drawing-board/">Avant-garde as a Service</a>, ArtReview.</li>
-        <li>The making of <em><a href="https://thetourist.thegoldfarbgallery.ca/">The Tourist</a></em>: <a href="https://www.frieze.com/article/zanzibar-ali-sultan-aissa-243">"Searching for the Revolutionary Ali Sultan Issa"</a>. Frieze #243.</li>
-        <li>Serpentine R&D briefings (co-author): <a href="https://reader.futureartecosystems.org/briefing/fae4/">Future Art Ecosystems 4: Art x Public AI</a> and <a href="https://d37zoqglehb9o7.cloudfront.net/uploads/2022/11/FAE3_ArtxDecentralised-Tech.pdf">Future Art Ecosystems 3: Art x Decentralised Tech</a></li>
-      </ul>      
-
-      <h2>2025 Activity</h2>
-      <ul>
-        <li>September: "Multipolar Technoculture" talk at Het Nieuwe Instituut (online)</li>
-        <li>September: Co-curated "The Weather In-Between: Monsoons, Markets and Other Derivative Atmospheres" at Para Site, Hong Kong, with Billy Tang and Stefan Luk, also keynote lecture.</li>
-        <li>October: talks in Goldsmiths MFA ("Planetarity") and Asymmetry ("Psychedelic Reason") lecture series.</li>
-         <li>August:<a href="https://www.vam.ac.uk/event/kepOWgnor0/friday-late-august-2025">Friday Lates panel</a> at V&A x Eastern Margins with Clara and Lorenzo</li>
-        <li>April-July: La Becque <3</li>
-        <li>April: <a href="https://www.youtube.com/watch?v=7ififKViRwU">Global Art Forum talk</a> with Halle Frost and a very good crew.</li>
-        <li>April: <a href="https://alserkal.online/event/majlis-talks-crit-club/">Crit Club at Alserkal Avenue</a> with Adelita Husni-Bey (thx cem and stephanie)</li>  
-        <li>May: writing a report on art & tech in China for British Council</li>
-        <li>April: Exhibition with Madde Andersson at Zentrum für Kreativ Wirtschaft, Kassel</li>
-        <li>April: <a href="https://www.youtube.com/watch?v=LcHM2Rj4JXQ">MoMA R&D Salon on scams</a>(fav topic)</li>
-        <li>March: "AIs, Egregores and the UX of personhood" at NYU Shanghai IMA</li>
-        <li>March: "Technology and Belief" artist talk at China Academy of Art</li> 
-        <li>January: <a href="https://www.rsa.ox.ac.uk/news/detail/contemporary-art-lectures-at-the-ruskin">Contemporary Art Lecture Series</a> at Ruskin College of Art, Oxford</li>
-      </ul>
-
-      <ul class="hide">
-        <li>August: PAF University</li>
-        <li>July: Dead Cat Bounce on tour to Nottingham Contemporary, <a href="https://www.nottinghamcontemporary.org/whats-on/performance-dead-cat-bounce-by-waste-paper-opera/">book here!</a></li>
-        <li>July: Senior Researcher @ Antikythera Cognitive Infrastructures Studio</li>
-        <li>June 9: Talk for Weird Economies Summer School, with Bassam El Baroni and Steven Klein</li>
-        <li>May 8: Online talk on "Interspecies Money" at Design Academy Eindhoven.</li>
-        <li>April: Dead Cat Bounce on tour to Eastside Projects</li>
-        <li>April: Publication launch: Future Art Ecosystems IV: Art & Public AI, read <a href="https://reader.futureartecosystems.org/briefing/fae4">here.</a></li>
-        <li>April: Publication launch: a text in <a href="https://www.las-art.foundation/explore/interspecies-future-a-primer">"Interspecies Future: A Primer"</a> published by Light Art Space.</li>
-        <li>Opening: <a href="https://epfl-pavilions.ch/exhibitions/metamers">METAMERS at EPFL Pavilions</a> until March 17th</li>
-        <li>Feb 26: <a href="https://www.ica.art/learning/conditions-sessions-gary-zhexi-zhang">Artist talk at ICA London</a> with Conditions programme</li>
-        <li>Feb 24th: <a href="https://www.e-flux.com/events/586088/gary-zhexi-zhang-catastrophe-time/">Catastrophe Time! Book launch</a> at e-flux, NYC</li>
-        <li><a href="https://www.frieze.com/article/zanzibar-ali-sultan-aissa-243">"Searching for the Revolutionary Ali Sultan Issa"</a> for Frieze #243.</li><li><a href="https://reader.futureartecosystems.org/briefing/fae4/">Future Art Ecosystems 4: Art x Public AI</The World a>, co-author (Serpentine, 2024)</li>
-        <li>Profile on Max Planck ICARUS project for Interspecies, LAS.</li>
-        <li><a href="https://www.artbasel.com/stories/taipei-biennial-taiwan-globalization">"Breaking up with globalization at the Taipei Biennial"</a> for Art Basel</li>
-        <li><a href="https://www.artbasel.com/stories/shanghai-art-ecosystem">"Shanghai Ecosystem Report"</a> for Art Basel</li>
-        <li><a href="http://www.leapleapleap.com/2023/10/into-the-lumpy-world/">Into the Lumpy World"</a>, LEAP, Summer 2023 issue.</li>
-        <li>Catalogue essay, Chando Ao (upcoming).</li>
-        <li><a href="https://www.frieze.com/article/gary-zhexi-zhang-catastrophe-time-235">"Unravelling the World in the Polycrisis Era"</a> for Frieze #235.</li>
-        <li><a href="https://d37zoqglehb9o7.cloudfront.net/uploads/2022/11/FAE3_ArtxDecentralised-Tech.pdf">Future Art Ecosystems 3: Art x Decentralised Tech</The World a>, co-author with Victoria Ivanova (Serpentine, 2022)</li>
-        <li>"The Internet of Egregores" for Singapore Biennial, on the invitation of Aarti Sunder (upcoming)</li>
-        <li><a href="https://www.fvu.co.uk/read/writing/echoes-from-the-void">An introduction</a> for Michael Ho's Jerwood FVU Commission, <em>Echoes from the Void</em></li>
-        <li>"Repressed Returns" in <em>Incomputable Earth - Digital Technologies and the Anthropocene</em> (Bloomsbury, upcoming)</li>
-        <li><a href="https://www.artpapers.org/trojan-horses/">Trojan Horses"</a> in ART PAPERS Spring 2022</li>
-        <li><a href="https://www.akademie-solitude.de/en/online-publications/mutations-2/never-the-same-ocean/">"Never the Same Ocean"</a>, Schloss Solitude "Mutations" Journal, in correspondence with Ittah Yoda. </li>
-        <li>"Jenna Sutela: Sonic Metabolisms (interview)" in <em>Sonic Continuum</em> (Nottingham Contemporary, upcoming)</li>
-        <li><a href="https://artreview.com/anicka-yi-i-am-very-squeamish-with-culture-interview-tate-turbine/">"Anicka Yi: ‘I’m Very, Very Squeamish With Culture'"</a> (interview) in ArtReview, October 2021</li>
-        <li>"Propositions" Harun Farocki Institute & Journal for Visual Culture</li>
-        <li>“Sinofuturism and its Uses”, VERGE Journal of Global Asias</li>
-        <li><a href="https://weirdeconomies.com/glossary/p/ponzi-scheme">"Ponzi Scheme"</a>, Weird Economies</li>
-        <li><a href="https://www.gaiaartfoundation.org/reading-room/the-insurable-universe-is-shrinking">"World on FIRE"</a>, Gaia Art Foundation</li>
-
-        <li>2022-23 R&D fellow @ Rockbund Art Museum</li>
-        <li>October 6: Opening roundtable for ENTER THE HYPERSCIENTIFIC residency at EPFL in Switzerland. Come hear me, Rosa Menkman, Sarah Oppenheimer and curator Giulia Bini talk about upcoming projects in Lausanne.</li>
-        <li><a href="https://thetourist.thegoldfarbgallery.ca/">NEW WORK: Premiere of THE TOURIST with Art Gallery at York University in Toronto and online!</a></li>
-        <li>Busan Sea Art Festival, opening Oct 15</li>
-        <li><a href="https://eastsideprojects.org/projects/alienvillage/">October 6: Opening of AlienVILLAGE with Sahjan Kooner at Eastside Projects, collaborations with myself,     Sophie Chapman and Manjit Kooner</a></li>
-        <li>Commission Launch: <a href="https://thetourist.thegoldfarbgallery.ca/">The Tourist @ AGYU Toronto</a></li>
-        <li>Workshop: Rupert AEP, Vilnius</li>
-        <li>September Book Launches: Rupert & CAC, Vilnius with Tautvydas Urbelis; After 8, Paris with Yuri Pattison & Benjamin Thorel; San Serriffe, Amsterdam with Metahaven & Merve Bedir</li> 
-        <li>Book Launch: <em>Catastrophe Time!</em> @ <a href="https://catastrophe.eventbrite.co.uk">GOLDSMITHS JUNE 11</a></li>
-        <li>July: <strike>Tickets for <a href="https://www.somersethouse.org.uk/whats-on/dead-cat-bounce">Dead Cat Bounce at Somerset House</a> for ONE NIGHT ONLY on July 14 are on sale now!</strike> Tickets are sold out!</li>
-        <li>May: Presented an installation version of DCB at Medialab Matadero as part of <a href="https://www.mataderomadrid.org/programacion/openlab01-medios-sintientes">OpenLAB.</a></li>
-        <li>06-21 April: I will be on a residency at <a href="https://www.medialab-matadero.es/">Medialab Matadero</a>, and preparing for a performance at Medialab's new festival, Open Lab. Lmk if you are in Madrid!</li>
-        <li>April: We (me & <a href="wastepaperopera.net/">Waste Paper Opera</a>) have just wrapped up a first week of rehearsals for Dead Cat Bounce at London Performance Studios.</li> 
-        <li>March: Talk and project review with students of (<a href="https://www.meteora.ch/cycle25">Meteora</a>) in the Hovestadt Chair at ETHZ</li>
-        <li><a href="https://www.kcl.ac.uk/news/kings-x-somerset-house-studios-a-new-chapter">Kings x Somerset House</a>: Countermapping the Hostile Environment w/ Lu Canzutti (KCL/SecurityFlows) & Migrants Organise</li>
-        <li>Teaching: Cybernetics and China with Mi You, The New Centre, session one <a href="https://www.youtube.com/watch?v=eJFulsNSnO4">here.</a></li>
-        <li>2022-23: lecturer @ Goldsmiths MFA, Fine Art, Critical Studies</li>
-        <li>Group Exhibition: Katabasis, or Cartographer in the Underworld @ totalab Shanghai, curated by Julian Junyuan Feng, April 2023</li>
-        <li>Talk: Art & Economy @ documenta Institute, May 2023</li>
-        <li>Talk: The Greater Fool Theory @ chelsea college of art, May 2023</li>
-        <li>Teaching: Casco Institute, COOP @ Dutch Art Institute</li>
-        <li>Talk: Earth day in-conversation with Sougwen Chung and Asad Raza for Gaia Art Foundation and Ignota Press</li>
-        <li>workshop @ Masters Institute of Visual Art</li>
-        <li>Talk: Sync or Swim @ Goldsmiths MFA Fine Art & Curating</li>
-        <li>Publication Launch: <em><a href="https://d37zoqglehb9o7.cloudfront.net/uploads/2022/11/FAE3_ArtxDecentralised-Tech.pdf">Future Art Ecosystems 3: Art x Decentralised Tech</a></em>. FAE3 was co-authored by Gary Zhexi Zhang and Victoria Ivanova, and produced by Eva Jaeger and Serpentine R&D Platform. <a href="https://www.twitch.tv/serpentineuk">Launch event here</a>.</li>
-        <li>A contribution to <a href="https://www.eventbrite.co.uk/e/cohesion-was-meant-to-hold-but-reality-started-to-slide-tickets-441359406867">Symposium: “Cohesion was meant to hold. But reality started to slide.” Diann Bauer — An Appreciation</a> </li>
-        <li>Group exhibition: <a href="https://ucca.org.cn/en/exhibition/liquid-ground/">Liquid Ground</a> @ UCCA Dune</li>
-        <li>Teaching: "Catastrophe Time!" workshop series at Goldsmiths MFA</li>
-        <li>Screening: Dead Cat Bounce exhibited on <a href="https://asweleavethewindowopen.live.liste.ch/">As We Leave The Window Open</a> as part of Liste Art Fair until October 13.</li>
-        <li>Talk/Curation: <a href="https://www.hkw.de/en/programm/projekte/2022/where_is_the_planetary/start.php">Where is the Planetary @ HKW</a>, "How Can Habitability Be Measured"?</li>
-        <li>Talk: Presentation @ Oslo Architecture Trienniale as part of <a href="https://www.oslotriennale.no/program/the-ledger-of-the-sun">The Ledger of the Sun</a>, organised by Jamie Allen</li>
-        <li>Talk: <a href="https://www.para-site.art/programme/art-x-technology-decoding-new-media-art/">Conversation with Jeffrey Shaw</a> as part of Para Site's Art and Technology talk series</li> 
-        <li>Premiere: Dead Cat Bounce w/ <a href="https://www.wastepaperopera.net/">Waste Paper Opera</a> @ Somerset House</li>
-        <li>Talk: <a href="https://www.twitch.tv/videos/1525866329">Financial Worlding</a> with <a href="https://www.twitch.tv/videos/1525868240">Caroline Woolard</a> as part of Strategies for Re-worlding at <a href="https://trust.support/">Trust</a>, Berlin</li>
-        <li>Talk: Industrial Food Textures and workshop w/ Agnes Cameron @ Schloss Solitude</li>
-        <li>Teaching: Visiting Tutor and "Scam Magic" workshops at Goldsmith's MFA</li>
-        <li>Podcast: <a href="https://audioboom.com/posts/8036531-the-process-what-is-financial-astrology">"What is Financial Astrology?"</a> with Alannah Chance @ Somerset House Studios</li>
-        <li>Solo exhibition: <em><a href="files/Cycle_25_GZZ_2021_xsm.pdf">Cycle 25</a></em> @ Arts Catalyst & Bloc Projects</li>
-        <li>Digital Artwork: <em><a href="https://fud.global">The First 10,000 Years</a></em> w/ Agnes Cameron @ Arts Catalyst</li>
-        <li>Group exhibition: <a href="https://www.ioam.org.cn/en/upcoming-exhibition/upcoming-exhibition%E4%B8%A8the-principle-of-hope/">The Principle of Hope</a> @ Inside Out Art Museum</li>
-        <li>Group exhibition: <a href="https://www.para-site.art/exhibitions/liquid-ground/">Liquid Ground</a> @ Para Site</li>
-        <li>Group Exhibition: <a href="https://www.alien.com.tw/u/en/pages/Rehearsing_the_Future">Rehearsing the Future</a> @ Alien Art Center</li>
-        <li>Group Exhibition: <a href="https://www.powerstationofart.com/whats-on/exhibitions/ecp-2021-exhibition">Death Ray on Coral Island</a> @ Power Station of Art</li>
-        <li>Online screening: <a href="https://thedouglashyde.ie/event/gary-zhexi-zhang/"><em>Parasite (物流)</em></a> @ Douglas Hyde Gallery</li>
-        <li>Talk: <a href="https://whitepapersondissent.xyz/">White Papers on Dissent</a> @ Van Abbemuseum</li>
-        <li>Group Exhibition: <a href="https://furtherexperiments.rhizome.org/">Further Experiments in Art & Technology</a> @ NEW INC & Nokia Bell Labs (as Foreign Objects w/ Eliza Collin)</li>
-      </ul>
-
-      <h2>Collaborations/Connections</h2>
-      <ul>
-        <li>Co-founder/fry cook of <a href="https://www.foreignobjects.net">Foreign Objects (dormant)</a></li>
-        <li>Resident at <a href="https://www.somersethouse.org.uk/residents/gary-zhexi-zhang">Somerset House Studios</a> with support from <a href="https://www.instagram.com/kyrin_c_/">Kyrin Chen</a></li>
-        <li>Distant but committed relationships w/ <a href="https://www.wastepaperopera.net">Waste Paper Opera</a>, <a href="https://trust.support">Trust</a>, <a href="https://www.sakiya.org">Sakiya</a>, O.W.L., <a href="https://weirdeconomies.com">Weird Economies</a>, <a href="https://futureartecosystems.org/">Serpentine Arts Technologies</a>, <a href="www.otherinter.net">Other Internet</a>, <a href="https://www.aicauk.org/our-members/user/303/">AICA</a></li>
-        <li>Ex: Lecturer @ Goldsmiths MFA, PhD ext. examiner @ RCA, resident @<a href="https://www.newinc.org">NEW INC</a>, p/t lecturer @ Parsons, Fellow @ Berggruen Institute, Delfina Foundation, Wysing, MIT ACT</li>
-      </ul>
-
-      <h2>Bio</h2>
+      <!-- BIO_START -->
+<h2>Bio</h2>
       <ul>
         <li id="bio">Gary Zhexi Zhang's work explores systemic connections between cosmology, technology and economy. He operates individually, in collaboration and within organisational frameworks. He recently edited a book of fictions, essays and interviews about finance and time, Catastrophe Time! (Strange Attractor Press, 2023). Dead Cat Bounce, the opera he co-created with Waste Paper Opera, premiered at Somerset House in 2022 and toured in 2024. His projects investigate the production and mediation of geopolitical imagination, particularly through forms of arbitrage across time, cultural and technical systems.<br><br>
 
         He currently holds the position of Tutor (Research) at the Royal College of Art, London, having previously held positions at Goldsmith's, Chelsea and Parsons. In 2026, he leads part of the Organismo programme at TBA21-Academy researching climate politics, in collaboration with Basque Centre for Climate Change and the European External Action Service, and also serves as an Advisor for the Hyundai Artlab Editorial Fellowship.<br><br>
 
-        Recent solo exhibitions and commissions include Metamers at EPFL Pavilions, Lausanne; the Asian Art Biennial, Taichung; Sea Art Festival, Busan; Art Gallery of York University, Toronto. He is works has be shown in group exhibitions at Domoheon Busan; Zentrum für Kreativ Wirtschaft, Kassel; Power Station of Art, Shanghai; Powerhouse Parramatta, Sydney (upcoming); Somerset House, London (upcoming). His work has been supported by residencies and fellowships at La Becque, Rockbund Art Museum,  EPFL, Sakiya, Delfina Foundation and Amant (upcoming). His artciles have been published for Frieze, ArtReview, Verge Journal of Global Asias, Journal of Cultural Economy, MIT Journal of Design and Science, e-flux, Noema; catalogue essays for Jenna Sutela, Auckland Gallery of Art, Steve Bishop, Anicka Yi and the New Museum; and books including Against Reduction (MIT Press, 2021), Incomputable Earth (Bloomsbury, 2026), Platforms: Around, In Between and Through (Singapore Biennale, 2023); Future Art Ecosystems III & IV (co-author; Serpentine, 2022 & 2024).  In 2025 he led a report on art and technology in China for the British Council. He is currently writing a book about multipolar technocultures.
-        </li>
+        Recent solo exhibitions and commissions include Metamers at EPFL Pavilions, Lausanne; the Asian Art Biennial, Taichung; Sea Art Festival, Busan; Art Gallery of York University, Toronto. His work has been shown in group exhibitions at Domoheon Busan; Zentrum für Kreativ Wirtschaft, Kassel; Power Station of Art, Shanghai; Powerhouse Parramatta, Sydney (upcoming); Somerset House, London (upcoming). His work has been supported by residencies and fellowships at La Becque, Rockbund Art Museum, EPFL, Sakiya, Delfina Foundation and Amant (upcoming). His articles have been published for Frieze, ArtReview, Verge Journal of Global Asias, Journal of Cultural Economy, MIT Journal of Design and Science, e-flux, Noema; catalogue essays for Jenna Sutela, Auckland Gallery of Art, Steve Bishop, Anicka Yi and the New Museum; and books including Against Reduction (MIT Press, 2021), Incomputable Earth (Bloomsbury, 2026), Platforms: Around, In Between and Through (Singapore Biennale, 2023); Future Art Ecosystems III &amp; IV (co-author; Serpentine, 2022 &amp; 2024). In 2025 he led a report on art and technology in China for the British Council. He is currently writing a book about multipolar technocultures.</li>
       </ul>
+        <!-- BIO_END -->
 
-      <h2>Links</h2>
-      <ul>
+      <!-- AFFILIATIONS_START -->
+<h2>Affiliations</h2>
+      <ul id="affiliations">
+        <li>Tutor (Research), Contemporary Art Practice, <a href="https://www.rca.ac.uk/">Royal College of Art</a>, London.</li>
+        <li>Resident at <a href="https://www.somersethouse.org.uk/residents/gary-zhexi-zhang">Somerset House Studios</a>, with support from <a href="https://www.instagram.com/kyrin_c_/">Kyrin Chen</a>.</li>
+        <li>Co-founder of <a href="https://www.foreignobjects.net">Foreign Objects</a> (dormant).</li>
+        <li>Ongoing relationships with <a href="https://www.wastepaperopera.net">Waste Paper Opera</a>, <a href="https://trust.support">Trust</a>, <a href="https://www.sakiya.org">Sakiya</a>, O.W.L., <a href="https://weirdeconomies.com">Weird Economies</a>, <a href="https://futureartecosystems.org/">Serpentine Arts Technologies</a>, <a href="https://www.otherinter.net">Other Internet</a>, <a href="https://www.aicauk.org/our-members/user/303/">AICA</a>.</li>
+        <li>Previously: lecturer @ Goldsmiths MFA, PhD ext. examiner @ RCA, resident @ <a href="https://www.newinc.org">NEW INC</a>, p/t lecturer @ Parsons, Fellow @ Berggruen Institute, Delfina Foundation, Wysing, MIT ACT.</li>
+      </ul>
+        <!-- AFFILIATIONS_END -->
+
+      <!-- LINKS_START -->
+<h2>Links</h2>
+      <ul id="links">
         <li><a href="https://www.are.na/zhexi-zhang">are.na</a></li>
         <li><a href="mailto:gary@zhexi.info">email</a></li>
         <li><a href="https://www.twitter.com/garyzhexizhang">twitter</a></li>
         <li><a href="https://www.instagram.com/garyzhexizhang">instagram</a></li>
       </ul>
+        <!-- LINKS_END -->
 
     </div>
 
-    <div>
-        <ul id="footer">
-          (c) Gary Zhexi Zhang 2025
-        </ul>
+    <p id="footer">(c) Gary Zhexi Zhang 2025</p>
+
+    <!-- GALLERY_START -->
+<script type="application/json" id="gallery-data" data-shuffle="false">[{"src": "images/poyers-1.jpg", "caption": "<em>Poyers!<\/em>, 2022. Para Site, Hong Kong.", "alt": "Poyers!, 2022"}, {"src": "images/poyers-2.jpg", "caption": "<em>Poyers!<\/em>, 2022. Installation view, Para Site, Hong Kong.", "alt": "Poyers!, 2022, installation view"}, {"src": "images/poyers-3.jpg", "caption": "<em>Poyers!<\/em>, 2022. Installation view, Para Site, Hong Kong.", "alt": "Poyers!, 2022, installation view"}, {"src": "images/metamers-1.jpg", "caption": "<em>METAMERS<\/em>, 2023.", "alt": "METAMERS, 2023"}, {"src": "images/metamers-2.jpg", "caption": "<em>METAMERS<\/em>, 2023.", "alt": "METAMERS, 2023"}, {"src": "images/metamers-3.jpg", "caption": "<em>METAMERS<\/em>, 2023.", "alt": "METAMERS, 2023"}, {"src": "images/metamers-4.jpg", "caption": "<em>METAMERS<\/em>, 2023.", "alt": "METAMERS, 2023"}, {"src": "images/metamers-5.jpg", "caption": "<em>METAMERS<\/em>, 2023.", "alt": "METAMERS, 2023"}, {"src": "images/metamers-6.jpg", "caption": "<em>METAMERS<\/em>, 2023.", "alt": "METAMERS, 2023"}, {"src": "images/dead-cat-bounce-1.jpg", "caption": "<em>Dead Cat Bounce<\/em>, 2024. Installation view. Photo: James Clarkson.", "alt": "Dead Cat Bounce, 2024, installation view"}, {"src": "images/dead-cat-bounce-2.jpg", "caption": "<em>Dead Cat Bounce<\/em>, 2024. Installation view. Photo: James Clarkson.", "alt": "Dead Cat Bounce, 2024, installation view"}, {"src": "images/dead-cat-bounce-3.jpg", "caption": "<em>Dead Cat Bounce<\/em>, 2024. Installation view. Photo: James Clarkson.", "alt": "Dead Cat Bounce, 2024, installation view"}, {"src": "images/dead-cat-bounce-4.jpg", "caption": "<em>Dead Cat Bounce<\/em>, 2024. Installation view. Photo: James Clarkson.", "alt": "Dead Cat Bounce, 2024, installation view"}, {"src": "images/dead-cat-bounce-5.jpg", "caption": "<em>Dead Cat Bounce<\/em>, 2024. Installation view. Photo: James Clarkson.", "alt": "Dead Cat Bounce, 2024, installation view"}, {"src": "images/dead-cat-bounce-6.jpg", "caption": "<em>Dead Cat Bounce<\/em>, 2024. Installation view, Nottingham Contemporary.", "alt": "Dead Cat Bounce, 2024, installation view, Nottingham Contemporary"}, {"src": "images/dead-cat-bounce-7.jpg", "caption": "<em>Dead Cat Bounce<\/em>, 2024. Installation view, Nottingham Contemporary.", "alt": "Dead Cat Bounce, 2024, installation view, Nottingham Contemporary"}, {"src": "images/dead-cat-bounce-8.jpg", "caption": "<em>Dead Cat Bounce<\/em>, 2024. Installation view, Nottingham Contemporary.", "alt": "Dead Cat Bounce, 2024, installation view, Nottingham Contemporary"}, {"src": "images/the-tourist-1.jpg", "caption": "<em>The Tourist<\/em>, 2023. Video still.", "alt": "The Tourist, 2023, video still"}, {"src": "images/the-tourist-2.jpg", "caption": "<em>The Tourist<\/em>, 2023. Video still.", "alt": "The Tourist, 2023, video still"}, {"src": "images/the-tourist-3.jpg", "caption": "<em>The Tourist<\/em>, 2023. Video still.", "alt": "The Tourist, 2023, video still"}, {"src": "images/the-tourist-4.jpg", "caption": "<em>The Tourist<\/em>, 2023. Video still.", "alt": "The Tourist, 2023, video still"}, {"src": "images/ocean-briefings-1.jpg", "caption": "<em>Ocean Briefings<\/em>, 2023. Sea Art Festival, Busan.", "alt": "Ocean Briefings, 2023, Sea Art Festival, Busan"}, {"src": "images/ocean-briefings-2.jpg", "caption": "<em>Ocean Briefings<\/em>, 2023. Sea Art Festival, Busan.", "alt": "Ocean Briefings, 2023, Sea Art Festival, Busan"}, {"src": "images/ocean-briefings-3.jpg", "caption": "<em>Ocean Briefings<\/em>, 2023. Sea Art Festival, Busan.", "alt": "Ocean Briefings, 2023, Sea Art Festival, Busan"}, {"src": "images/ocean-briefings-4.jpg", "caption": "<em>Ocean Briefings<\/em>, 2023. Sea Art Festival, Busan.", "alt": "Ocean Briefings, 2023, Sea Art Festival, Busan"}, {"src": "images/ocean-briefings-5.jpg", "caption": "<em>Ocean Briefings<\/em>, 2023. Sea Art Festival, Busan.", "alt": "Ocean Briefings, 2023, Sea Art Festival, Busan"}, {"src": "images/ocean-briefings-6.jpg", "caption": "<em>Ocean Briefings<\/em>, 2023. Sea Art Festival, Busan.", "alt": "Ocean Briefings, 2023, Sea Art Festival, Busan"}, {"src": "images/ocean-briefings-7.jpg", "caption": "<em>Ocean Briefings<\/em>, 2023. Sea Art Festival, Busan.", "alt": "Ocean Briefings, 2023, Sea Art Festival, Busan"}, {"src": "images/catastrophe-time-1.jpg", "caption": "<em>Catastrophe Time!<\/em> (Strange Attractor Press, 2023).", "alt": "Catastrophe Time!, Strange Attractor Press, 2023"}, {"src": "images/catastrophe-time-2.jpg", "caption": "<em>Catastrophe Time!<\/em> (Strange Attractor Press, 2023).", "alt": "Catastrophe Time!, Strange Attractor Press, 2023"}, {"src": "images/cycle-25-1.jpg", "caption": "<em>Cycle 25<\/em>, 2021. Installation view, Bloc Projects, Sheffield.", "alt": "Cycle 25, 2021, installation view, Bloc Projects"}]</script>
+        <!-- GALLERY_END -->
+
+    <div id="image-mode" hidden>
+      <div class="image-container">
+        <img id="image-mode-img" alt="" hidden>
+        <div class="placeholder" id="image-mode-placeholder">no images attached to any entries yet &mdash; add image paths in <em>entries.yaml</em> or via the cms.</div>
       </div>
+      <div class="caption" id="image-mode-caption">
+        <span class="date" id="image-mode-date"></span>
+        <span class="type" id="image-mode-type"></span>
+        <span class="desc" id="image-mode-desc"></span>
+      </div>
+    </div>
+
+    <script>
+      // ── Filter logic (with year-heading dimming) ────────────────────────
+      (function () {
+        const typeButtons = document.querySelectorAll('#type-filters button');
+        const themeButtons = document.querySelectorAll('#theme-filters button');
+        const allItems = document.querySelectorAll('#timeline > li');
+
+        const entryItems = document.querySelectorAll('#timeline li[data-type]');
+        const themeNav = document.getElementById('theme-filters');
+        let currentType = 'all';
+        let currentTheme = 'all';
+
+        // Themes present among entries matching the current type filter.
+        function availableThemes() {
+          const set = new Set();
+          entryItems.forEach(li => {
+            const types = (li.dataset.type || '').split(/\s+/).filter(Boolean);
+            if (currentType !== 'all' && !types.includes(currentType)) return;
+            (li.dataset.themes || '').split(/\s+/).filter(Boolean).forEach(t => set.add(t));
+          });
+          return set;
+        }
+
+        // Show only theme buttons relevant to the current type; hide row if none.
+        function updateThemes() {
+          if (!themeNav) return;
+          const avail = availableThemes();
+          let anyShown = false;
+          themeButtons.forEach(btn => {
+            const t = btn.dataset.themeFilter;
+            if (t === 'all') return;
+            const show = avail.has(t);
+            btn.hidden = !show;
+            if (show) anyShown = true;
+          });
+          if (currentTheme !== 'all' && !avail.has(currentTheme)) {
+            currentTheme = 'all';
+            themeButtons.forEach(b => b.classList.toggle('active', b.dataset.themeFilter === 'all'));
+          }
+          themeNav.hidden = !anyShown;
+        }
+
+        function apply() {
+          updateThemes();
+          // First pass: dim entries that don't match the active type/theme.
+          allItems.forEach(li => {
+            if (li.classList.contains('year-heading')) return;
+            const types = (li.dataset.type || '').split(/\s+/).filter(Boolean);
+            const themes = (li.dataset.themes || '').split(/\s+/).filter(Boolean);
+            const typeMatch = currentType === 'all' || types.includes(currentType);
+            const themeMatch = currentTheme === 'all' || themes.includes(currentTheme);
+            li.classList.toggle('dim', !(typeMatch && themeMatch));
+          });
+          // Second pass: hide empty year headings; track the first visible one.
+          let heading = null, visibleInGroup = 0, firstVisible = null;
+          const finalize = () => {
+            if (!heading) return;
+            const empty = visibleInGroup === 0;
+            heading.classList.toggle('dim', empty);
+            if (!empty && !firstVisible) firstVisible = heading;
+          };
+          allItems.forEach(li => {
+            if (li.classList.contains('year-heading')) {
+              finalize();
+              heading = li;
+              visibleInGroup = 0;
+            } else if (!li.classList.contains('dim')) {
+              visibleInGroup++;
+            }
+          });
+          finalize();
+          // The first visible year heading sits flush at the top (no margin),
+          // so the top edge doesn't jump when filtering changes which year leads.
+          allItems.forEach(li => {
+            if (li.classList.contains('year-heading')) li.classList.toggle('top', li === firstVisible);
+          });
+        }
+
+        // Briefly hide the list, swap, then fade in — a soft blend on filtering.
+        const timelineEl = document.getElementById('timeline');
+        function applyWithFade() {
+          timelineEl.style.transition = 'none';
+          timelineEl.style.opacity = '0';
+          apply();
+          requestAnimationFrame(() => {
+            timelineEl.style.transition = '';
+            timelineEl.style.opacity = '1';
+          });
+        }
+
+        typeButtons.forEach(btn => {
+          btn.addEventListener('click', () => {
+            currentType = btn.dataset.typeFilter;
+            typeButtons.forEach(b => b.classList.toggle('active', b === btn));
+            applyWithFade();
+          });
+        });
+
+        themeButtons.forEach(btn => {
+          btn.addEventListener('click', () => {
+            currentTheme = btn.dataset.themeFilter;
+            themeButtons.forEach(b => b.classList.toggle('active', b === btn));
+            applyWithFade();
+          });
+        });
+
+        // Initial pass: theme-row availability + first-visible heading.
+        apply();
+      })();
+
+      // ── Image mode ─────────────────────────────────────────────────────
+      (function () {
+        const toggle = document.getElementById('mode-toggle');
+        const overlay = document.getElementById('image-mode');
+        const img = document.getElementById('image-mode-img');
+        const placeholder = document.getElementById('image-mode-placeholder');
+        const dateEl = document.getElementById('image-mode-date');
+        const typeEl = document.getElementById('image-mode-type');
+        const descEl = document.getElementById('image-mode-desc');
+        const captionEl = document.getElementById('image-mode-caption');
+
+        // The carousel reads a build-generated list: the curated gallery
+        // bucket first, then captioned images from visible entries.
+        function gather() {
+          const el = document.getElementById('gallery-data');
+          if (!el) return [];
+          try { return JSON.parse(el.textContent) || []; } catch (e) { return []; }
+        }
+
+        let images = [];
+        let idx = 0;
+        let timer = null;
+        const ADVANCE_MS = 5000;
+
+        function render() {
+          if (!images.length) {
+            img.hidden = true;
+            placeholder.hidden = false;
+            descEl.innerHTML = '';
+            return;
+          }
+          const cur = images[idx];
+          placeholder.hidden = true;
+          img.hidden = false;
+          // Fade image + caption out, swap, then fade in (0.2s blend).
+          img.style.opacity = '0';
+          captionEl.style.opacity = '0';
+          img.src = cur.src;
+          img.alt = cur.alt || '';
+          dateEl.textContent = '';
+          typeEl.textContent = '';
+          descEl.innerHTML = cur.caption || '';
+          requestAnimationFrame(() => requestAnimationFrame(() => {
+            img.style.opacity = '1';
+            captionEl.style.opacity = '1';
+          }));
+        }
+
+        function shuffleArr(a) {
+          for (let i = a.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [a[i], a[j]] = [a[j], a[i]];
+          }
+        }
+
+        function stopTimer() { if (timer) { clearInterval(timer); timer = null; } }
+        function resetTimer() { stopTimer(); if (images.length > 1) timer = setInterval(next, ADVANCE_MS); }
+
+        function open() {
+          images = gather();
+          const el = document.getElementById('gallery-data');
+          if (el && el.dataset.shuffle === 'true') shuffleArr(images);
+          idx = 0;
+          render();
+          overlay.hidden = false;
+          document.body.classList.add('image-mode-open');
+          document.body.style.overflow = 'hidden';
+          toggle.textContent = 'text';
+          resetTimer();
+        }
+        function close() {
+          stopTimer();
+          overlay.hidden = true;
+          document.body.classList.remove('image-mode-open');
+          document.body.style.overflow = '';
+          toggle.textContent = 'images';
+        }
+        function next() { if (images.length) { idx = (idx + 1) % images.length; render(); resetTimer(); } }
+        function prev() { if (images.length) { idx = (idx - 1 + images.length) % images.length; render(); resetTimer(); } }
+
+        toggle.addEventListener('click', () => overlay.hidden ? open() : close());
+        // Click anywhere on the image to advance (but let caption links work).
+        overlay.addEventListener('click', e => { if (!e.target.closest('a')) next(); });
+        document.addEventListener('keydown', e => {
+          if (overlay.hidden) return;
+          if (e.key === 'Escape') close();
+          else if (e.key === 'ArrowRight') next();
+          else if (e.key === 'ArrowLeft') prev();
+        });
+      })();
+    </script>
 
   </body>
 

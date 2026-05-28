@@ -1209,4 +1209,4 @@ gallery:
 - src: images/poyers-3.jpg
   caption: <em>Poyers!</em>, 2022. Installation view, Para Site, Hong Kong.
   alt: Poyers!, 2022, installation view
-gallery_shuffle: false
+gallery_shuffle: true

@@ -655,10 +655,17 @@
           captionEl.style.opacity = '0';
           descEl.innerHTML = cur.caption || '';
           img.alt = cur.alt || '';
-          img.onload = () => requestAnimationFrame(() => requestAnimationFrame(() => {
-            img.style.opacity = '1';
-            captionEl.style.opacity = '1';
-          }));
+          img.onload = () => {
+            // Portrait images (and anything on a narrow screen) show whole,
+            // not cropped; wide images stay full-bleed on desktop.
+            const portrait = img.naturalHeight > img.naturalWidth;
+            const narrow = window.matchMedia('(max-width: 600px)').matches;
+            img.style.objectFit = (portrait || narrow) ? 'contain' : 'cover';
+            requestAnimationFrame(() => requestAnimationFrame(() => {
+              img.style.opacity = '1';
+              captionEl.style.opacity = '1';
+            }));
+          };
           img.src = cur.src;
         }
 

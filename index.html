@@ -650,11 +650,11 @@
           const cur = images[idx];
           placeholder.hidden = true;
           img.hidden = false;
-          // Fade image + caption out, then reveal them together only once the
-          // image has loaded — so the caption never flashes over a blank frame.
+          // Fade the current image + caption out (caption keeps its OLD text
+          // while fading). Swap the text only once it's invisible, then fade
+          // the new text in — after the image has loaded.
           img.style.opacity = '0';
           captionEl.style.opacity = '0';
-          descEl.innerHTML = cur.caption || '';
           img.alt = cur.alt || '';
           img.onload = () => {
             // Portrait images (and anything on a narrow screen) show whole,
@@ -662,10 +662,11 @@
             const portrait = img.naturalHeight > img.naturalWidth;
             const narrow = window.matchMedia('(max-width: 600px)').matches;
             img.style.objectFit = (portrait || narrow) ? 'contain' : 'cover';
-            requestAnimationFrame(() => requestAnimationFrame(() => {
-              img.style.opacity = '1';
-              setTimeout(() => { captionEl.style.opacity = '1'; }, 200);  // caption lags the image in
-            }));
+            requestAnimationFrame(() => requestAnimationFrame(() => { img.style.opacity = '1'; }));
+            setTimeout(() => {
+              descEl.innerHTML = cur.caption || '';   // swap text while faded out
+              captionEl.style.opacity = '1';          // then fade the new caption in
+            }, 200);
           };
           img.src = cur.src;
         }

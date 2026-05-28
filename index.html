@@ -684,7 +684,7 @@
           images = gather();
           const el = document.getElementById('gallery-data');
           if (el && el.dataset.shuffle === 'true') shuffleArr(images);
-          idx = 0;
+          idx = images.length ? Math.floor(Math.random() * images.length) : 0;
           render();
           overlay.hidden = false;
           document.body.classList.add('image-mode-open');
@@ -711,6 +711,9 @@
           else if (e.key === 'ArrowRight') next();
           else if (e.key === 'ArrowLeft') prev();
         });
+
+        // Land in image mode on a random work (only if there are images to show).
+        if (gather().length) open();
       })();
     </script>
 

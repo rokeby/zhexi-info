@@ -231,33 +231,47 @@
         }
       }
 
-      /* Mode toggle button */
-      #mode-toggle {
+      /* Corner buttons: image/text toggle (top-right) + contact (bottom-left) */
+      #mode-toggle,
+      #contact-btn {
         position: fixed;
         top: 1em;
         right: 1em;
         z-index: 60;
         background: white;
+        color: black;
         border: 1px solid black;
         font-family: 'Garamond', serif;
         font-size: 1em;
         text-transform: lowercase;
+        text-decoration: none;
+        -webkit-text-stroke-width: 0;
         padding: 0.3em 0.9em;
         cursor: pointer;
         transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
       }
 
-      #mode-toggle:hover {
+      #contact-btn {
+        top: auto;
+        right: auto;
+        bottom: 1em;
+        left: 1em;
+      }
+
+      #mode-toggle:hover,
+      #contact-btn:hover {
         background: yellow;
       }
 
-      body.image-mode-open #mode-toggle {
+      body.image-mode-open #mode-toggle,
+      body.image-mode-open #contact-btn {
         background: black;
         color: white;
         border-color: white;
       }
 
-      body.image-mode-open #mode-toggle:hover {
+      body.image-mode-open #mode-toggle:hover,
+      body.image-mode-open #contact-btn:hover {
         background: #222;
       }
 
@@ -337,6 +351,7 @@
   <body>
 
     <button id="mode-toggle" aria-label="toggle image mode">images</button>
+    <a id="contact-btn" href="mailto:gary@zhexi.info">contact</a>
 
     <div id="main-list">
 

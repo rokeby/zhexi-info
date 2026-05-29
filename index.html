@@ -155,6 +155,17 @@
         color: red;
       }
 
+      /* A single pair of brackets around the whole type-filter set.
+         (last button's 0.6em margin-right gives the gap before "]".) */
+      #type-filters::before {
+        content: "[";
+        margin-right: 0.6em;
+      }
+
+      #type-filters::after {
+        content: "]";
+      }
+
       #theme-filters .theme-label {
         font-style: italic;
         opacity: 0.55;

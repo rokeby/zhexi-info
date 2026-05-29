@@ -592,10 +592,9 @@
           timelineEl.style.transition = 'none';
           timelineEl.style.opacity = '0';
           apply();
-          requestAnimationFrame(() => {
-            timelineEl.style.transition = '';
-            timelineEl.style.opacity = '1';
-          });
+          void timelineEl.offsetWidth;   // force the opacity:0 to paint so the fade actually fires
+          timelineEl.style.transition = 'opacity 0.1s ease';
+          timelineEl.style.opacity = '1';
         }
 
         typeButtons.forEach(btn => {
@@ -638,6 +637,7 @@
         let images = [];
         let idx = 0;
         let timer = null;
+        let firstRender = true;
         const ADVANCE_MS = 5000;
 
         function render() {
@@ -650,25 +650,37 @@
           const cur = images[idx];
           placeholder.hidden = true;
           img.hidden = false;
-          // Fade the current image + caption out (caption keeps its OLD text
-          // while fading). Swap the text only once it's invisible, then fade
-          // the new text in — after the image has loaded.
-          img.style.opacity = '0';
-          captionEl.style.opacity = '0';
-          img.alt = cur.alt || '';
-          img.onload = () => {
-            // Portrait images (and anything on a narrow screen) show whole,
-            // not cropped; wide images stay full-bleed on desktop.
+
+          // Load the new image + caption, then fade them in together.
+          const reveal = () => {
             const portrait = img.naturalHeight > img.naturalWidth;
             const narrow = window.matchMedia('(max-width: 600px)').matches;
             img.style.objectFit = (portrait || narrow) ? 'contain' : 'cover';
-            requestAnimationFrame(() => requestAnimationFrame(() => { img.style.opacity = '1'; }));
-            setTimeout(() => {
-              descEl.innerHTML = cur.caption || '';   // swap text while faded out
-              captionEl.style.opacity = '1';          // then fade the new caption in
-            }, 200);
+            requestAnimationFrame(() => requestAnimationFrame(() => {
+              img.style.opacity = '1';
+              captionEl.style.opacity = '1';
+            }));
           };
-          img.src = cur.src;
+          const swap = () => {
+            img.onload = reveal;
+            descEl.innerHTML = cur.caption || '';
+            img.alt = cur.alt || '';
+            img.src = cur.src;
+          };
+
+          if (firstRender) {
+            // First view: show straight away (no fade-out of empty content).
+            firstRender = false;
+            img.style.opacity = '0';
+            captionEl.style.opacity = '0';
+            swap();
+          } else {
+            // Advancing: fade current image + caption out together, then swap
+            // (preloaded, so instant) and fade the new pair in together.
+            img.style.opacity = '0';
+            captionEl.style.opacity = '0';
+            setTimeout(swap, 200);
+          }
         }
 
         function shuffleArr(a) {

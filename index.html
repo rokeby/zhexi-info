@@ -166,7 +166,7 @@
       #timeline {
         list-style: none;
         padding-left: 0;
-        transition: opacity 0.1s ease;
+        transition: opacity 0.2s ease;
       }
 
       #timeline li {
@@ -608,7 +608,7 @@
           timelineEl.style.opacity = '0';
           apply();
           void timelineEl.offsetWidth;   // force the opacity:0 to paint so the fade actually fires
-          timelineEl.style.transition = 'opacity 0.1s ease';
+          timelineEl.style.transition = 'opacity 0.2s ease';
           timelineEl.style.opacity = '1';
         }
 

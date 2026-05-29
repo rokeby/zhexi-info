@@ -155,15 +155,16 @@
         color: red;
       }
 
-      /* A single pair of brackets around the whole type-filter set.
-         (last button's 0.6em margin-right gives the gap before "]".) */
-      #type-filters::before {
-        content: "[";
+      /* A single pair of parentheses around the theme set, to set the themes
+         apart from the type categories. (last button's 0.6em margin gives the
+         gap before ")".) */
+      #theme-filters::before {
+        content: "(";
         margin-right: 0.6em;
       }
 
-      #type-filters::after {
-        content: "]";
+      #theme-filters::after {
+        content: ")";
       }
 
       #theme-filters .theme-label {

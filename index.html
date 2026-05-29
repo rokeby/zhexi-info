@@ -681,12 +681,21 @@
         function stopTimer() { if (timer) { clearInterval(timer); timer = null; } }
         function resetTimer() { stopTimer(); if (images.length > 1) timer = setInterval(next, ADVANCE_MS); }
 
+        // Warm the browser cache for every slide so advancing has no load delay.
+        let preloaded = false;
+        function preloadAll() {
+          if (preloaded || !images.length) return;
+          preloaded = true;
+          images.forEach(s => { const i = new Image(); i.src = s.src; });
+        }
+
         function open() {
           images = gather();
           const el = document.getElementById('gallery-data');
           if (el && el.dataset.shuffle === 'true') shuffleArr(images);
           idx = images.length ? Math.floor(Math.random() * images.length) : 0;
           render();
+          preloadAll();
           overlay.hidden = false;
           document.body.classList.add('image-mode-open');
           document.body.style.overflow = 'hidden';

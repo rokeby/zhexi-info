@@ -1199,6 +1199,16 @@ entries:
   images: []
   created: '2026-05-28T19:24:36'
   modified: '2026-05-28T19:24:36'
+- id: 110
+  date: may 2026
+  sort: '2026-05-15'
+  visible: true
+  types: [writing]
+  themes: [ecology, belief]
+  description_html: wrote a text "Eating the wind" for Jenna Sutela's Finnish Pavilion exhibition at Venice, along side curator Stefanie Hessler, Jenna and Elvia Wilk
+  images: []
+  created: '2026-06-01T16:36:22'
+  modified: '2026-06-01T16:36:22'
 gallery:
 - src: images/poyers-1.jpg
   caption: <em>Poyers!</em>, 2022. Para Site, Hong Kong.

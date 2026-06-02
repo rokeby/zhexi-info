@@ -36,6 +36,13 @@
       html {
         overflow-x: hidden;     /* clip the slight skew overflow; no sideways scroll */
         overflow-y: scroll;
+        scrollbar-width: none;          /* Firefox */
+        -ms-overflow-style: none;       /* IE / old Edge */
+      }
+      html::-webkit-scrollbar {         /* Chrome, Safari, new Edge */
+        width: 0;
+        height: 0;
+        display: none;
       }
 
       body {

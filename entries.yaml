@@ -227,21 +227,21 @@ entries:
   sort: '2025-03-15'
   visible: true
   types: [talk]
-  themes: []
+  themes: [npc]
   description_html: '"AIs, Egregores and the UX of personhood" at NYU Shanghai IMA.'
   images: []
   created: '2026-05-28T00:00:00'
-  modified: '2026-05-28T00:00:00'
+  modified: '2026-07-15T00:06:10'
 - id: 22
   date: mar 2025
   sort: '2025-03-15'
   visible: true
   types: [talk]
-  themes: []
+  themes: [belief]
   description_html: '"Technology and Belief" artist talk at China Academy of Art.'
   images: []
   created: '2026-05-28T00:00:00'
-  modified: '2026-05-28T00:00:00'
+  modified: '2026-07-15T00:06:19'
 - id: 23
   date: jan 2025
   sort: '2025-01-15'
@@ -271,7 +271,7 @@ entries:
   description_html: 'group show: 小节线内的抽屉 at Power Station of Art, Shanghai.'
   images: []
   created: '2026-05-28T00:00:00'
-  modified: '2026-05-28T00:00:00'
+  modified: '2026-07-15T00:06:30'
 - id: 26
   date: feb 2024
   sort: '2024-02-15'
@@ -429,11 +429,11 @@ entries:
   sort: '2024-08-15'
   visible: true
   types: [teaching]
-  themes: []
+  themes: [multipolarity]
   description_html: PAF University with Flora Weil
   images: []
   created: '2026-05-28T00:00:00'
-  modified: '2026-05-28T18:35:35'
+  modified: '2026-07-15T00:06:26'
 - id: 38
   date: feb 2024
   sort: '2024-02-15'
@@ -1120,15 +1120,15 @@ entries:
   created: '2026-05-28T18:43:42'
   modified: '2026-05-28T18:43:42'
 - id: 102
-  date: nov 2026
-  sort: '2026-11-15'
+  date: nov 2025
+  sort: '2025-11-15'
   visible: true
   types: [teaching]
   themes: []
   description_html: started as tutor (research) in MA Contemporary Art Practice at RCA
   images: []
   created: '2026-05-28T18:47:55'
-  modified: '2026-05-28T19:39:50'
+  modified: '2026-07-14T23:58:18'
 - id: 103
   date: jun 2025
   sort: '2025-06-15'
@@ -1184,21 +1184,21 @@ entries:
   sort: '2026-06-15'
   visible: true
   types: [research]
-  themes: []
+  themes: [npc]
   description_html: I'm an advisor for Serpentine's Future Art Ecosystems <a href="https://www.serpentinegalleries.org/whats-on/future-art-ecosystems-rd-fellowship-art-x-convergence/">Art x Convergence fellowship</a>
   images: []
   created: '2026-05-28T19:04:01'
-  modified: '2026-05-28T19:04:01'
+  modified: '2026-07-15T00:05:51'
 - id: 109
   date: may 2026
   sort: '2026-05-28'
   visible: true
   types: [writing]
-  themes: []
+  themes: [npc]
   description_html: Interview with net.art legends <a href="https://ocula.com/magazine/conversations/eva-and-franco-mattes-venice-exhibition-rage-bait/">Eva & Franco Mattes</a>
   images: []
   created: '2026-05-28T19:24:36'
-  modified: '2026-05-28T19:24:36'
+  modified: '2026-07-15T00:05:39'
 - id: 110
   date: may 2026
   sort: '2026-05-15'
@@ -1209,6 +1209,29 @@ entries:
   images: []
   created: '2026-06-01T16:36:22'
   modified: '2026-06-01T16:36:22'
+- id: 111
+  date: jul 2026
+  sort: '2026-07-15'
+  visible: true
+  types: [research]
+  themes: [ecology]
+  description_html: '<a href="https://cloudgardens.info/">cloud gardens</a>, a project I led as part of Organismo at TBA21-Academy with an incredible team in collaboration with the Basque Centre for Climate Change (BC3) has just completed its first phase:  Cloud Gardens is a grassroots geoengineering proposal for maintaining the land-atmospheric water cycle in the West Mediterranean Basin through land-use planning and cloud-formation through evapotranspiration. Taking the Río Palancia valley in northern Valencia as its pilot site, the project brings together community dialogue, scenario planning, scientific modelling and a game-engine narrative tool.'
+  images:
+  - src: images/Screenshot_2026-07-14_at_11.59.22_pm.png
+    alt: ''
+    caption: Cloud Gardens (Phase I video still), collaboration with Last Resorts team, Organismo and BC3, 2026
+  created: '2026-07-15T00:03:48'
+  modified: '2026-07-15T00:03:48'
+- id: 112
+  date: may 2026
+  sort: '2026-05-15'
+  visible: true
+  types: [writing]
+  themes: [multipolarity, economy]
+  description_html: wrote a piece "Shenzhencore" for <a href="https://spikeartmagazine.com/articles/news-spike-87-everythings-computer-out-now">Spike</a>
+  images: []
+  created: '2026-07-15T00:05:30'
+  modified: '2026-07-15T00:05:30'
 gallery:
 - src: images/poyers-1.jpg
   caption: <em>Poyers!</em>, 2022. Para Site, Hong Kong.

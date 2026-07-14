@@ -1038,13 +1038,13 @@ INDEX_HTML = r"""<!DOCTYPE html>
     });
   }
 
-  async function saveSite() {
+  function sitePayload() {
     const show = {};
     SITE_MODULES.forEach(k => {
       const cb = document.getElementById('show-' + k);
       show[k] = cb ? cb.checked : true;
     });
-    const payload = {
+    return {
       heading_html: document.getElementById('site-heading').value,
       bio_html: document.getElementById('site-bio').value,
       news: siteNews,
@@ -1052,10 +1052,15 @@ INDEX_HTML = r"""<!DOCTYPE html>
       links: siteLinks,
       show,
     };
-    const res = await fetch('/api/site', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+  }
+
+  async function saveSite(opts = {}) {
+    const res = await fetch('/api/site', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(sitePayload()) });
+    if (opts.silent) return res.ok;
     const note = document.getElementById('site-saved');
     if (res.ok) { note.textContent = 'saved ✓ — click "build site" to publish'; await load(); }
     else { note.textContent = 'error saving'; }
+    return res.ok;
   }
 
   // ── Theme panel ────────────────────────────────────────────────────────────
@@ -1240,6 +1245,11 @@ INDEX_HTML = r"""<!DOCTYPE html>
   async function build() {
     const out = document.getElementById('build-output');
     out.className = 'show';
+    // Flush the site content editor first — entry/theme/gallery edits are
+    // saved by their own handlers, but site content lives only in JS state
+    // until saveSite() posts it.
+    out.textContent = 'saving site content…';
+    await saveSite({ silent: true });
     out.textContent = 'building…';
     const res = await fetch('/api/build', { method: 'POST' });
     const r = await res.json();

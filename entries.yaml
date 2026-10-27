@@ -1106,9 +1106,24 @@ entries:
   types: [exhibition]
   themes: [npc, belief]
   description_html: PUSS, a new performance work with Klara Kofen and Cameron Graham, for <a href="https://www.somersethouse.org.uk/whats-on/3-evenings-saturday">Somerset House 3 Evenings during Frieze week</a>
-  images: []
+  images:
+  - src: images/Photo_credit_Anne_Tetzlaff_DSC0279.jpg
+    alt: ''
+    caption: '<em>Puss,</em> Gary Zhexi Zhang, Klara Kofen and Cameron Graham, at Wapping Powerhouse for <em>3 Evenings</em> by Somerset House Studios, 2026. Photo: Anna Tetzlaff'
+  - src: images/Photo_credit_Anne_Tetzlaff_DSC0160.jpg
+    alt: ''
+    caption: '<em>Puss,</em> Gary Zhexi Zhang, Klara Kofen and Cameron Graham, at Wapping Powerhouse for <em>3 Evenings</em> by Somerset House Studios, 2026. Photo: Anna Tetzlaff'
+  - src: images/Photo_credit_Anne_Tetzlaff_DSC0152.jpg
+    alt: ''
+    caption: '<em>Puss,</em> Gary Zhexi Zhang, Klara Kofen and Cameron Graham, at Wapping Powerhouse for <em>3 Evenings</em> by Somerset House Studios, 2026. Photo: Anna Tetzlaff'
+  - src: images/Photo_credit_Anne_TetzlaffDSC05855.jpg
+    alt: ''
+    caption: '<em>Puss,</em> Gary Zhexi Zhang, Klara Kofen and Cameron Graham, at Wapping Powerhouse for <em>3 Evenings</em> by Somerset House Studios, 2026. Photo: Anna Tetzlaff'
+  - src: images/Photo_credit_Anne_TetzlaffDSC05869.jpg
+    alt: ''
+    caption: '<em>Puss,</em> Gary Zhexi Zhang, Klara Kofen and Cameron Graham, at Wapping Powerhouse for <em>3 Evenings</em> by Somerset House Studios, 2026. Photo: Anna Tetzlaff'
   created: '2026-05-28T18:40:58'
-  modified: '2026-05-28T18:44:30'
+  modified: '2026-10-26T20:07:51'
 - id: 101
   date: oct 2026
   sort: '2026-10-15'
@@ -1232,6 +1247,22 @@ entries:
   images: []
   created: '2026-07-15T00:05:30'
   modified: '2026-07-15T00:05:30'
+- id: 113
+  date: oct 2026
+  sort: '2026-10-15'
+  visible: true
+  types: [research, talk]
+  themes: [npc]
+  description_html: '"Autodrama" - I am showing some WIP through a performance lecture at Amant featuring some of my new work around NPC melodramas, <a href="https://www.amant.org/programs/3000-autodrama-with-gary-zhexi-zhang">RSVP here!</a>'
+  images:
+  - src: images/135554_OTS-04-85mm-angle20_HeadShoulders_85mm_f4.0_A_crop.jpg
+    alt: ''
+    caption: ''
+  - src: images/182606_B-T02-grave-eyesdown_DreyerBrowCut_100mm_f4.0_B.jpg
+    alt: ''
+    caption: ''
+  created: '2026-10-26T21:02:40'
+  modified: '2026-10-26T21:02:40'
 gallery:
 - src: images/poyers-1.jpg
   caption: <em>Poyers!</em>, 2022. Para Site, Hong Kong.
